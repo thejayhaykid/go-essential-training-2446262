@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
@@ -12,5 +13,18 @@ func main() {
 	To catch me the wind
 	`
 
-	fmt.Println(text)
+	text = strings.ToLower(text)
+	textSlice := strings.Fields(text)
+	textMap := map[string]int{}
+
+	for _, value := range textSlice {
+		_, ok := textMap[value]
+		if !ok {
+			textMap[value] = 1
+		} else {
+			textMap[value] = textMap[value] + 1
+		}
+	}
+
+	fmt.Println(textMap)
 }
